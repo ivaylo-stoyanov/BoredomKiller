@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
+import { useTheme } from './ThemeContext'
 
 const GAME_WIDTH = 800
 const GAME_HEIGHT = 400
@@ -14,6 +15,7 @@ const GAME_SPEED = 5
 const OBSTACLE_SPAWN_INTERVAL = 2000
 
 function App() {
+  const { theme, toggleTheme } = useTheme()
   const [gameStarted, setGameStarted] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
@@ -173,6 +175,9 @@ function App() {
       <h1>Head Jump Game</h1>
       <div className="game-info">
         <div className="score">Score: {score}</div>
+        <button className="theme-toggle" onClick={toggleTheme}>
+          {theme === 'light' ? '🌙' : '☀️'} {theme === 'light' ? 'Dark' : 'Light'} Mode
+        </button>
       </div>
 
       <div className="game-container" onClick={jump}>

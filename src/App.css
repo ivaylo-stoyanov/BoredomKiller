@@ -4,38 +4,45 @@
 }
 
 h1 {
-  color: #333;
+  color: var(--text-primary);
   margin-bottom: 20px;
   font-size: 2.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  text-shadow: 2px 2px 4px var(--shadow-color);
+  transition: color 0.3s ease;
 }
 
 .game-info {
   margin-bottom: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
 }
 
 .score {
   font-size: 1.5rem;
   font-weight: bold;
-  color: #2c3e50;
-  background: white;
+  color: var(--text-tertiary);
+  background: var(--card-bg);
   padding: 10px 20px;
   border-radius: 10px;
   display: inline-block;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: background 0.3s ease, color 0.3s ease;
 }
 
 .game-container {
   position: relative;
   width: 800px;
   height: 400px;
-  background: linear-gradient(to bottom, #87CEEB 0%, #87CEEB 70%, #90EE90 70%, #90EE90 100%);
-  border: 4px solid #333;
+  background: linear-gradient(to bottom, var(--sky-color) 0%, var(--sky-color) 70%, var(--grass-color) 70%, var(--grass-color) 100%);
+  border: 4px solid var(--border-color);
   border-radius: 10px;
   margin: 0 auto;
   overflow: hidden;
   cursor: pointer;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px var(--shadow-color-dark);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .ground {
@@ -44,8 +51,9 @@ h1 {
   left: 0;
   width: 100%;
   height: 50px;
-  background: #8B4513;
-  border-top: 3px solid #654321;
+  background: var(--ground-color);
+  border-top: 3px solid var(--ground-border);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .player {
@@ -64,10 +72,10 @@ h1 {
   transform: translateX(-50%);
   width: 50px;
   height: 50px;
-  background: #FFD700;
-  border: 3px solid #FFA500;
+  background: var(--player-head);
+  border: 3px solid var(--player-head-border);
   border-radius: 50%;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px var(--shadow-color-dark);
 }
 
 .head::before {
@@ -100,9 +108,10 @@ h1 {
   transform: translateX(-50%);
   width: 30px;
   height: 30px;
-  background: #4169E1;
-  border: 2px solid #1E40AF;
+  background: var(--player-body);
+  border: 2px solid var(--player-body-border);
   border-radius: 5px;
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .obstacle {
@@ -110,10 +119,11 @@ h1 {
   bottom: 50px;
   width: 30px;
   height: 60px;
-  background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
-  border: 2px solid #8B0000;
+  background: linear-gradient(135deg, var(--obstacle-gradient-start) 0%, var(--obstacle-gradient-end) 100%);
+  border: 2px solid var(--obstacle-border);
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 4px var(--shadow-color-dark);
+  transition: background 0.3s ease, border-color 0.3s ease;
 }
 
 .obstacle::before {
@@ -133,39 +143,40 @@ h1 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background: var(--overlay-bg);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--overlay-text);
   z-index: 100;
+  transition: background 0.3s ease;
 }
 
 .overlay h2 {
   font-size: 3rem;
   margin-bottom: 20px;
-  color: #FFD700;
+  color: var(--button-gradient-start);
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
 }
 
 .overlay p {
   font-size: 1.3rem;
   margin-bottom: 30px;
-  color: #fff;
+  color: var(--overlay-text);
 }
 
 .final-score {
   font-size: 2rem;
   font-weight: bold;
-  color: #90EE90;
+  color: var(--grass-color);
 }
 
 .overlay button {
   font-size: 1.5rem;
   padding: 15px 40px;
-  background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
-  color: #333;
+  background: linear-gradient(135deg, var(--button-gradient-start) 0%, var(--button-gradient-end) 100%);
+  color: var(--button-text);
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -187,11 +198,39 @@ h1 {
 .instructions {
   margin-top: 20px;
   font-size: 1.1rem;
-  color: #555;
-  background: white;
+  color: var(--text-secondary);
+  background: var(--card-bg);
   padding: 10px;
   border-radius: 8px;
   display: inline-block;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* Theme toggle button */
+.theme-toggle {
+  font-size: 1.2rem;
+  padding: 10px 20px;
+  background: var(--card-bg);
+  color: var(--text-primary);
+  border: 2px solid var(--border-color);
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  box-shadow: 0 2px 8px var(--shadow-color);
+  transition: transform 0.2s, box-shadow 0.2s, background 0.3s ease, color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color-dark);
+}
+
+.theme-toggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px var(--shadow-color);
 }
 
 @media (max-width: 850px) {
