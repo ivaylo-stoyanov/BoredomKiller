@@ -16,6 +16,7 @@ const OBSTACLE_SPAWN_INTERVAL = 2000
 
 function App() {
   const { theme, toggleTheme } = useTheme()
+  const [showHomepage, setShowHomepage] = useState(true)
   const [gameStarted, setGameStarted] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [score, setScore] = useState(0)
@@ -73,6 +74,11 @@ function App() {
       setIsJumping(true)
     }
   }, [gameStarted, gameOver])
+
+  // Enter game from homepage
+  const enterGame = () => {
+    setShowHomepage(false)
+  }
 
   // Start game
   const startGame = () => {
@@ -170,6 +176,52 @@ function App() {
     return () => window.removeEventListener('keydown', handleKeyPress)
   }, [jump])
 
+  // Show homepage
+  if (showHomepage) {
+    return (
+      <div className="app">
+        <div className="homepage">
+          <div className="homepage-content">
+            <div className="homepage-header">
+              <button className="theme-toggle homepage-theme-toggle" onClick={toggleTheme}>
+                {theme === 'light' ? '🌙' : '☀️'} {theme === 'light' ? 'Dark' : 'Light'} Mode
+              </button>
+            </div>
+
+            <h1 className="homepage-title">Head Jump Game</h1>
+            <div className="homepage-description">
+              <p>Welcome to the ultimate endless runner challenge!</p>
+              <p>Control a character with a hilariously large head and jump over incoming obstacles.</p>
+            </div>
+
+            <div className="homepage-features">
+              <div className="feature">
+                <div className="feature-icon">🎮</div>
+                <h3>Easy Controls</h3>
+                <p>Press SPACE or click to jump</p>
+              </div>
+              <div className="feature">
+                <div className="feature-icon">🏆</div>
+                <h3>Beat Your Score</h3>
+                <p>Avoid obstacles and rack up points</p>
+              </div>
+              <div className="feature">
+                <div className="feature-icon">⚡</div>
+                <h3>Fast-Paced Fun</h3>
+                <p>Quick reflexes are your best friend</p>
+              </div>
+            </div>
+
+            <button className="play-button" onClick={enterGame}>
+              Play Game
+            </button>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Show game
   return (
     <div className="app">
       <h1>Head Jump Game</h1>
